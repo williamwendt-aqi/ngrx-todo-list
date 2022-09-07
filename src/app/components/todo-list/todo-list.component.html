@@ -1,0 +1,6 @@
+<div class="box">
+    <h3>Todo List</h3>
+    <div class="todo" *ngFor="let todo of todoList$ | async" (click)="onTodoSelected(todo.id)">
+        <h4>{{ todo.name }}</h4>
+    </div>
+</div>
