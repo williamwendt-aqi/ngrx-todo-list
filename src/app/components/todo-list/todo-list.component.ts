@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { assignTodo } from 'src/app/actions/selected-todo.actions';
 import { Todo } from 'src/app/models/todo';
 import { allTodos } from 'src/app/selectors/todo.selectors';
-import { TodoState } from '../../reducers/index';
+import { AppState } from '../../reducers/index';
 
 @Component({
   selector: 'app-todo-list',
@@ -13,9 +13,9 @@ import { TodoState } from '../../reducers/index';
 })
 export class TodoListComponent implements OnInit {
 
-  todoList$: Observable<Todo[]>;
+  todoList$: Observable<Todo<string>[]>;
 
-  constructor(private store: Store<TodoState>) {
+  constructor(private store: Store<AppState>) {
     this.todoList$ = this.store.pipe(select(allTodos))
   }
 

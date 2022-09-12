@@ -24,7 +24,22 @@
     width: 30px;
 }
 
+.requirements {
+    color: red;
+    text-align: left;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
 button:disabled {
     color: #CCCCCC;
     border: 1px solid #CCCCCC;
+}
+
+span {
+    display: block;
 }

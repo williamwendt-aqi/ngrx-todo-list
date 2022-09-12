@@ -1,0 +1,7 @@
+<app-todo
+    [todo]="todo$ | async"
+    [canCompleteTodo]="canCompleteTodo$ | async"
+    (onSaveTodo)="saveTodo($event)"
+    (onCompleteTodo)="completeTodo($event)"
+    (onCheckTodoItem)="checkTodoItem($event)"
+></app-todo>

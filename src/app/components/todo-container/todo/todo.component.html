@@ -1,0 +1,21 @@
+<div class="box">
+    <h3>Todo</h3>
+    <div *ngIf="!(todo || newTodo).id" class="requirements">
+        <span>Todo requires a name and at least one todo item</span>
+        <span>Todo name requires at least one capital letter and one number</span>
+    </div>
+    <div *ngIf="(todo || newTodo) as todo">
+        <label for="name">Name: </label>
+        <input id="name" class="text input" type="text" [(ngModel)]="todo.name" />
+        <div class="todo-items" *ngFor="let item of todo.items">
+            <input *ngIf="todo.id" title="is-complete" class="checkbox text input" [checked]="item.isComplete" (change)="checkTodoItem(item)" type="checkbox" />
+            <input title="item-name" class="text input" [disabled]="true" [ngClass]="{'strikethrough': item.isComplete }" [(ngModel)]="item.text" type="text" />
+        </div>
+        <div *ngIf="!todo.id">
+            <input title="new-todo-item" class="text input" [(ngModel)]="newItem.text" />
+            <button class="button add-item" (click)="saveTodoItem(newItem)">+</button>
+        </div>
+        <button *ngIf="!todo.id" [disabled]="!canSaveTodo" class="input button" [disabled]="" (click)="saveTodo(todo)">Save Todo</button>
+        <button *ngIf="todo.id" [disabled]="!canCompleteTodo" class="input button" (click)="completeTodo(todo)">Complete</button>
+    </div>
+</div>

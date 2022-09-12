@@ -5,37 +5,20 @@ import {
   on
 } from '@ngrx/store';
 import { environment } from '../../environments/environment';
-import { assignTodo } from '../actions/selected-todo.actions';
-import { addTodo, completeTodoItem, removeTodo } from '../actions/todo.actions';
-import { Todo } from '../models/todo';
-import { TodoItem } from '../models/todo-item';
+import { selectedTodoIdReducer } from './selected-todo.reducer';
+import { todoItemsReducer, TodoItemsState } from './todo-item.reducer';
+import { todosReducer, TodosState } from './todo.reducer';
 
-const initialSelectedTodoState: string = '';
-
-const initialTodosState: Todo[] = new Array<Todo>();
-
-export interface TodoState {
+export interface AppState {
   selectedTodoId: string,
-  todos: Todo[],
+  todos: TodosState
+  todoItems: TodoItemsState;
 }
 
-export const selectedTodoIdReducer = createReducer(
-  initialSelectedTodoState,
-  on(assignTodo, (state, { currentTodoId }) => state === currentTodoId ? '' : currentTodoId)
-)
-
-export const todosReducer = createReducer(
-  initialTodosState,
-  on(addTodo, (state, { todo }) => [...state, todo]),
-  on(removeTodo, (state, { todoId }) => state.filter(t => t.id !== todoId )),
-  on(completeTodoItem, (state, { todoId, todoItemId, isComplete }) => {
-    return state;
-  })
-);
-
-export const reducers: ActionReducerMap<TodoState> = {
+export const reducers: ActionReducerMap<AppState> = {
   selectedTodoId: selectedTodoIdReducer,
-  todos: todosReducer
+  todos: todosReducer,
+  todoItems: todoItemsReducer
 };
 
-export const metaReducers: MetaReducer<TodoState>[] = !environment.production ? [] : [];
+export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [] : [];

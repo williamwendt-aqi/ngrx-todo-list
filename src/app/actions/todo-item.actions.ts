@@ -16,7 +16,12 @@ export const removeTodoItem = createAction(
   (todoItemId: string): any => ({ todoItemId })
 );
 
-export const completeTodoItem = createAction(
+export const removeMultipleTodoItems = createAction(
+  '[TodoItems] Remove Multiple Items',
+  (todoItemIds: string[]): any => ({ todoItemIds })
+)
+
+export const checkTodoItem = createAction(
   '[TodoItems] Complete Todo Item',
   (todoItem: TodoItem, isComplete: boolean): any => ({ todoItem, isComplete })
 );

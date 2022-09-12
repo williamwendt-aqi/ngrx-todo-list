@@ -1,11 +1,11 @@
 import { TodoItem } from "./todo-item";
 
-export class Todo {
+export class Todo<T> {
     id: string = '';
     name: string = '';
-    items: TodoItem[] = new Array<TodoItem>();
+    items: T[] = new Array<T>();
 
-    get canComplete(): boolean {
-        return this.items?.every(i => i.isComplete);
+    public constructor(init?: Partial<Todo<T>>) {
+        Object.assign(this, init);
     }
 }
